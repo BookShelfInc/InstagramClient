@@ -17,10 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         let mainTabBarController = CustomTabBarController()
+        let loginPage = LoginPage()
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         if let window = self.window {
-            window.rootViewController = mainTabBarController
+            window.rootViewController = loginPage //mainTabBarController
             window.makeKeyAndVisible()
         }
         

@@ -30,3 +30,45 @@ extension UIColor {
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
 }
+
+extension UIScrollView {
+    func updateContentViewSize() {
+        var newHeight: CGFloat = 0
+        for view in subviews {
+            let ref = view.frame.origin.y + view.frame.height
+            if ref > newHeight {
+                newHeight = ref
+            }
+        }
+        let oldSize = contentSize
+        let newSize = CGSize(width: oldSize.width, height: newHeight + 100)
+        contentSize = newSize
+    }
+}
+
+extension UIImage {
+    static func resizedCroppedImage(image: UIImage, newSize:CGSize) -> UIImage? {
+        var ratio: CGFloat = 0
+        var delta: CGFloat = 0
+        var offset = CGPoint.zero
+        
+        if image.size.width > image.size.height {
+            ratio = newSize.width / image.size.width
+            delta = (ratio * image.size.width) - (ratio * image.size.height)
+            offset = CGPoint(x: delta / 2, y: 0)
+        } else {
+            ratio = newSize.width / image.size.height
+            delta = (ratio * image.size.height) - (ratio * image.size.width)
+            offset = CGPoint(x: 0, y: delta / 2)
+        }
+        
+        let clipRect = CGRect(x: -offset.x, y: -offset.y, width: (ratio * image.size.width) + delta, height: (ratio * image.size.height) + delta)
+        UIGraphicsBeginImageContextWithOptions(newSize, true, 0.0)
+        UIRectClip(clipRect)
+        image.draw(in: clipRect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+}

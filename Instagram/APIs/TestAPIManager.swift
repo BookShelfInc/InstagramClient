@@ -44,4 +44,24 @@ class TestAPIManager {
         }
     }
     
+    static func profileInfo(completion: @escaping(JSON) -> Void) {
+        let url = "http://ec2-18-216-108-42.us-east-2.compute.amazonaws.com/auth/info/"
+        
+        let headers: [String: String] = [
+            "Content-Type": "application/json",
+            "Authorization": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJlbWFpbCI6InNhbkBzYW4uY29tIiwidXNlcm5hbWUiOiJzYW4iLCJleHAiOjE1NDQxNzE2MjQsIm9yaWdfaWF0IjoxNTEyNjM1NjI0fQ.Yx2CW-K7F5JrqPBsOUcF6xZjPTN6_vZ4lIb602ObGlc"
+        ]
+        
+        
+        Alamofire.request(url, method: .get, parameters: nil, headers: headers).validate().responseJSON { (response) in
+            print(response.data)
+            let json = JSON(response.data)
+            print("---------")
+            print(json)
+            print(json["photo"]["photo_small_path"])
+            
+            completion(json)
+        }
+    }
+    
 }
