@@ -54,13 +54,13 @@ class TestAPIManager {
         
         
         Alamofire.request(url, method: .get, parameters: nil, headers: headers).validate().responseJSON { (response) in
-            print(response.data)
+            /*print(response.data)
             let json = JSON(response.data)
             print("---------")
             print(json)
-            print(json["photo"]["photo_small_path"])
+            print(json["photo"]["photo_small_path"])*/
             
-            completion(json)
+            //completion(json)
         }
     }
     

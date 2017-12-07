@@ -19,10 +19,6 @@ class FeedPage: BasePage {
         tableView.dataSource = self
         tableView.delegate = self
         
-        TestAPIManager.profileInfo { (json) in
-            print("Completed")
-        }
-        
         view.addSubview(tableView)
         addConstraints()
     }

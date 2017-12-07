@@ -10,6 +10,9 @@ import UIKit
 
 class Constants {
     static let tabBarColor: UIColor = UIColor(hexString: "F9F9F9")
+    
+    static let baseURL: String = "http://ec2-18-216-108-42.us-east-2.compute.amazonaws.com"
+    
     static let images: [UIImage] = [UIImage(named: "avatar_placeholder")!,
                              UIImage(named: "avatar_placeholder")!,
                              UIImage(named: "avatar_placeholder")!,
