@@ -9,6 +9,7 @@
 import UIKit
 
 class ProfilePage: BasePage, ImageCollectionViewControllerDelegate {
+    
     let stackView = UIStackView()
     
     let posts = CounterView(number: 0, title: "Posts")
@@ -76,7 +77,7 @@ class ProfilePage: BasePage, ImageCollectionViewControllerDelegate {
             make.right.equalTo(stackView.snp.right)
         }
         
-        imageViewWrapperView.backgroundColor = .red
+        imageViewWrapperView.backgroundColor = .clear
         imageViewWrapperView.snp.makeConstraints { (make) in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
             make.leading.equalToSuperview()
@@ -87,10 +88,12 @@ class ProfilePage: BasePage, ImageCollectionViewControllerDelegate {
         
         //imageView.image = #imageLiteral(resourceName: "avatar_placeholder")
         
-        let url = URL(string: "https://s3.us-east-2.amazonaws.com/insta-project-photo-s3bucket/san/2017_12_07_09_11_40_small.jpg")
-        let data = try? Data(contentsOf: url!)
-        let imagee = UIImage(data: data!)
-        imageView.image = imagee
+        //let url = URL(string: "https://s3.us-east-2.amazonaws.com/insta-project-photo-s3bucket/san/2017_12_07_09_11_40_small.jpg")
+        //let data = try? Data(contentsOf: url!)
+        //let imagee = UIImage(data: data!)
+        //imageView.image = imagee
+        
+        imageView.imageFromServerURL(urlString: "https://s3.us-east-2.amazonaws.com/insta-project-photo-s3bucket/san/2017_12_07_09_11_40_small.jpg")
         
         imageView.layer.cornerRadius = imageView.frame.width / 2
         imageView.layer.masksToBounds = false
@@ -102,7 +105,7 @@ class ProfilePage: BasePage, ImageCollectionViewControllerDelegate {
             make.height.equalTo(imageView.snp.width)
         }
         
-        usernameLabel.text = "user Full name"
+        usernameLabel.text = "SanzharAmirzhan"
         usernameLabel.font = usernameLabel.font.withSize(14)
         usernameLabel.snp.makeConstraints { (make) in
             make.left.equalTo(imageView.snp.left)
@@ -139,8 +142,9 @@ class ProfilePage: BasePage, ImageCollectionViewControllerDelegate {
         print("Tapped")
     }
     
-    func cellTapped() {
+    func cellTapped(photo: InterestingPhotos) {
         let viewController = UserPostPage()
+        viewController.photo = photo
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

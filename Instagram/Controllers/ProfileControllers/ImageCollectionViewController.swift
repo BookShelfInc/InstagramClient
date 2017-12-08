@@ -9,11 +9,17 @@
 import UIKit
 
 protocol ImageCollectionViewControllerDelegate: class {
-    func cellTapped()
+    func cellTapped(photo: InterestingPhotos)
 }
 
 class ImageCollectionViewController: UICollectionViewController {
-    let images: [UIImage] = Constants.images
+    var images: [UIImage] = Constants.images
+    
+    var photos: [InterestingPhotos] = [] {
+        didSet {
+            collectionView?.reloadData()
+        }
+    }
     
     weak var delegate: ImageCollectionViewControllerDelegate?
     
@@ -43,17 +49,17 @@ class ImageCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return photos.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ImageCollectionViewCell
-        cell.itemImageView.image = images[indexPath.row]
+        cell.itemImageView.imageFromServerURL(urlString: photos[indexPath.row].imageLink)
+        
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Tapped -> \(indexPath.row)th item")
-        delegate?.cellTapped()
+        delegate?.cellTapped(photo: photos[indexPath.row])
     }
 }

@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 struct CommentBody {
-    let comment: String
+    var comment: String
     let userId: Int
     let photoId: Int
 }
@@ -40,26 +40,37 @@ class PhotoAPIManager {
         completion(true)
     }
     
-    static func getFeedImages(token: String, completion: @escaping(Bool) -> Void) {
+    static func getFeedImages(token: String, completion: @escaping([InterestingPhotos]) -> Void) {
         let headers = getHeaders(with: token)
+        var photos: [InterestingPhotos] = []
         
         Alamofire.request(feedLink, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers).validate().responseJSON { (response) in
             
+            let json = JSON(response.data!)
+            let jsonArray = json.arrayValue
             
+            for object in jsonArray {
+                photos.append(InterestingPhotos(json: object))
+            }
+            
+            completion(photos)
         }
-        
-        completion(true)
     }
     
-    static func getInterestinImages(token: String, completion: @escaping(Bool) -> Void) {
+    static func getInterestinImages(token: String, completion: @escaping([InterestingPhotos]) -> Void) {
         let headers = getHeaders(with: token)
+        var photos: [InterestingPhotos] = []
         
         Alamofire.request(interestingImagesLink, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers).validate().responseJSON { (response) in
+            let json = JSON(response.data!)
+            let jsonArray = json.arrayValue
             
+            for object in jsonArray {
+                photos.append(InterestingPhotos(json: object))
+            }
             
+            completion(photos)
         }
-        
-        completion(true)
     }
     
     static func getImages(ofUser userId: Int, token: String, completion: @escaping(Bool) -> Void) {
@@ -84,7 +95,6 @@ class PhotoAPIManager {
         }
         
         completion(true)
-        
     }
     
     static func leaveComment(with commentBody: CommentBody, token: String, completion: @escaping(Bool) -> Void) {
@@ -96,13 +106,22 @@ class PhotoAPIManager {
             "photo": commentBody.photoId
         ]
         
+        print(token)
+        print(leaveCommentLink)
+        print(commentBody.comment)
+        print(commentBody.userId)
+        print(commentBody.photoId)
+        
         Alamofire.request(leaveCommentLink, method: .post, parameters: params, encoding: URLEncoding.default, headers: headers).validate().responseJSON { (response) in
             
-            
+            switch response.result {
+            case .success( _):
+                completion(true)
+            case .failure(let error):
+                print(error)
+                completion(false)
+            }
         }
-        
-        completion(true)
-        
     }
     
     static func deleteComment(id: Int, token: String, completion: @escaping(Bool) -> Void) {
@@ -122,8 +141,16 @@ class PhotoAPIManager {
         let headers = getHeaders(with: token)
         
         Alamofire.request(putLikeLink + "\(id)/", method: .post, parameters: nil, encoding: URLEncoding.default, headers: headers).validate().responseJSON { (response) in
+            print(putLikeLink + "\(id)/")
+            print(response.data!)
             
-            
+            switch response.result {
+            case .success( _):
+                completion(true)
+            case .failure(let error):
+                print(error)
+                completion(false)
+            }
         }
         
         completion(true)

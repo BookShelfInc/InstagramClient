@@ -22,6 +22,8 @@
 		114F56AE1FD31BFF000CF19E /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114F56AD1FD31BFF000CF19E /* CustomTabBarController.swift */; };
 		114F56B01FD31C61000CF19E /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114F56AF1FD31C61000CF19E /* CustomTabBar.swift */; };
 		114F56B31FD31CF7000CF19E /* CustomTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114F56B21FD31CF7000CF19E /* CustomTabBarItem.swift */; };
+		116083BF1FDA5153005AED64 /* InterestingPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116083BE1FDA5153005AED64 /* InterestingPhotos.swift */; };
+		1172DA281FDAA90700664AC5 /* CommentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1172DA271FDAA90700664AC5 /* CommentPage.swift */; };
 		117D03801FD93AEF00F87287 /* UserPostPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D037F1FD93AEF00F87287 /* UserPostPage.swift */; };
 		117D03841FD94D7C00F87287 /* PostHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D03831FD94D7C00F87287 /* PostHeaderView.swift */; };
 		117D03861FD96DD000F87287 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D03851FD96DD000F87287 /* LoginPage.swift */; };
@@ -62,6 +64,8 @@
 		114F56AD1FD31BFF000CF19E /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		114F56AF1FD31C61000CF19E /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		114F56B21FD31CF7000CF19E /* CustomTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarItem.swift; sourceTree = "<group>"; };
+		116083BE1FDA5153005AED64 /* InterestingPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestingPhotos.swift; sourceTree = "<group>"; };
+		1172DA271FDAA90700664AC5 /* CommentPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPage.swift; sourceTree = "<group>"; };
 		117D037F1FD93AEF00F87287 /* UserPostPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostPage.swift; sourceTree = "<group>"; };
 		117D03831FD94D7C00F87287 /* PostHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderView.swift; sourceTree = "<group>"; };
 		117D03851FD96DD000F87287 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 				110438C11FD92DF80034FAD0 /* SearchUserPage.swift */,
 				117D037F1FD93AEF00F87287 /* UserPostPage.swift */,
 				117D03851FD96DD000F87287 /* LoginPage.swift */,
+				1172DA271FDAA90700664AC5 /* CommentPage.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -209,6 +214,7 @@
 				119D38091FD337B900D4F638 /* Constants.swift */,
 				119D380B1FD3391D00D4F638 /* Extensions.swift */,
 				117D03891FD974CE00F87287 /* User.swift */,
+				116083BE1FDA5153005AED64 /* InterestingPhotos.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -389,7 +395,9 @@
 				119D38011FD3254A00D4F638 /* UploadImagePage.swift in Sources */,
 				114F56AE1FD31BFF000CF19E /* CustomTabBarController.swift in Sources */,
 				119D38071FD3358900D4F638 /* PostView.swift in Sources */,
+				116083BF1FDA5153005AED64 /* InterestingPhotos.swift in Sources */,
 				117D03841FD94D7C00F87287 /* PostHeaderView.swift in Sources */,
+				1172DA281FDAA90700664AC5 /* CommentPage.swift in Sources */,
 				119D37FF1FD3253000D4F638 /* SearchPage.swift in Sources */,
 				119D380C1FD3391D00D4F638 /* Extensions.swift in Sources */,
 				11E794881FD58407009339C9 /* TestAPIManager.swift in Sources */,

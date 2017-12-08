@@ -71,4 +71,37 @@ extension UIImage {
         
         return newImage
     }
+    
+    private func imageFromServerURL(urlString: String) -> UIImage? {
+        var imageData: Data?
+        URLSession.shared.dataTask(with: NSURL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in
+            
+            if error != nil {
+                return
+            }
+            
+            imageData = data
+            
+        }).resume()
+        
+        let image = UIImage(data: imageData!)
+        return image
+    }
+    
 }
+
+extension UIImageView {
+    public func imageFromServerURL(urlString: String) {
+        URLSession.shared.dataTask(with: NSURL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in
+            
+            if error != nil {
+                return
+            }
+            DispatchQueue.main.async(execute: { () -> Void in
+                let image = UIImage(data: data!)
+                self.image = image
+            })
+        }).resume()
+    }
+}
+
